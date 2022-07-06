@@ -6,10 +6,13 @@ gridLayout.forEach((childNode) => {
 });
 document.getElementById('key-board').addEventListener('click', keyBoardEvents);
 document.getElementById('1-1').focus();
-
-
+document.getElementById('enter').addEventListener('click', enterOrDeletekeyup);
+document.getElementById('delete').addEventListener('click', enterOrDeletekeyup);
 let currentCellId = '1-1';
 function keyBoardEvents(event) {
+  if(event.target.textContent === 'ENTER' || event.target.textContent === 'DELETE') {
+	  return
+  }
   document.getElementById(currentCellId).color = '#fff';
   document.getElementById(currentCellId).value = event.target.textContent;
   focusOnNextKey(null, currentCellId);
@@ -19,20 +22,14 @@ function focusOnNextKey(event = null, cellId = null) {
   let cellValue = cellId ? document.getElementById(cellId).value : event.target.value;
   word += cellValue;
   let [row, column] = cellIndex.split('-');
-  if (column == 5) {
-    let diffWords = checkWord();
-    applyCellValidations(row, diffWords);
-    row++;
-    column = 1;
-    word = '';
-  } else {
+  if (column < 5) {
     column++;
-  };
-
-  currentCellId = [row, column].join('-');
-  document.getElementById(currentCellId).focus();
+	currentCellId = [row, column].join('-');
+	document.getElementById(currentCellId).focus();
+  }
 }
 function checkWord() {
+	word = word.toLowerCase();
   return [...word]
     .filter((charc) => { return [...targetWord].includes(charc) })
     .map((elem) => {
@@ -65,4 +62,29 @@ function applyCellValidations(row, validatorArr) {
     }
 
   })
+}
+
+function enterOrDeletekeyup(event) {
+	if(event.target.textContent === 'ENTER') {
+		let diffWords = checkWord();
+		let [row, column] = currentCellId.split('-');
+		applyCellValidations(row, diffWords);
+		row++;
+		column = 1;
+		word = '';
+		currentCellId = [row, column].join('-');
+		document.getElementById(currentCellId).focus();
+	}
+	if(event.target.textContent === 'DELETE') {
+		if(document.getElementById(currentCellId).value == '') {
+			let [row, column] = currentCellId.split('-');
+			column--;
+			word = word.slice(0, -1);
+			currentCellId = [row, column].join('-');
+			document.getElementById(currentCellId).value = '';
+			document.getElementById(currentCellId).focus();
+		} else {
+			document.getElementById(currentCellId).value = '';
+		}
+	}
 }
