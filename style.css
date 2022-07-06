@@ -1,0 +1,75 @@
+body {
+  background: black;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+header {
+  height: 200px;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.grid-container {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+}
+.grid-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.square-input {
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
+  text-align: center;
+}
+input {
+  width: 40px;
+  height: 40px;
+  background: black;
+  color: white;
+  font-size: 40px;
+}
+.grid-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.key-board {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.key-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.square-input-keys {
+  width: 50px;
+  height: 55px;
+  border: 1px solid white;
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #787c7e;
+  border-radius: 3px;
+}
+.square-input-keys-button {
+  width: 100px;
+  height: 55px;
+  border: 1px solid white;
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #787c7e;
+  border-radius: 3px;
+}
